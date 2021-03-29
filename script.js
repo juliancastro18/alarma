@@ -44,4 +44,4 @@ function Sonido(){
 setInterval( () => {
     Sonido();
     posChanger();
-}, 1000);
+}, 500);
