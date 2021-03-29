@@ -21,14 +21,19 @@ const posChanger = () => {
 function Sonido(){
      //creamos oscilador
     let osc = context.createOscillator();
+    let gainNode = context.createGain();
  
+    osc.connect(gainNode);
+    gainNode.gain.value = 0.08;
+
     // admite: sine, square, sawtooth, triangle
     osc.type = 'sawtooth'; 
  
     osc.frequency.value=Sonidos[pos];
  
+
     //asignamos el destino para el sonido
-    osc.connect(context.destination);
+    gainNode.connect(context.destination);
     //iniciamos la nota
     osc.start();
     //detenemos la nota medio segundo despues
@@ -39,4 +44,4 @@ function Sonido(){
 setInterval( () => {
     Sonido();
     posChanger();
-}, 300);
+}, 1000);
